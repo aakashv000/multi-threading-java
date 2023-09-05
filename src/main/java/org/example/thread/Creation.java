@@ -2,7 +2,7 @@ package org.example.thread;
 
 /**
  * creation - by creating Thread class object directly
- * by implicitly extending Runnable class and passing it to above
+ * by implicitly extending/implementing Runnable class and passing it to above
  */
 public class Creation {
     public static void creation() throws InterruptedException {
