@@ -1,26 +1,15 @@
 package org.example;
 
+import org.example.thread.Creation;
+
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         System.out.println("Hello world!");
 
-        Thread t = new Thread(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        System.out.println("In thread: " + Thread.currentThread());
-                        System.out.println("Current thread priority = " + Thread.currentThread().getPriority());
-                    }
-                }
-        );
+        // thread - creation - init
+        Creation.creation();
 
-        t.setName("My thread first");
-        t.setPriority(Thread.MAX_PRIORITY);
-
-        System.out.println("Before starting custom thread. Thread = " + Thread.currentThread());
-        t.start();
-        System.out.println("After starting custom thread. Thread = " + Thread.currentThread());
-
-        Thread.sleep(5*1000);
+        // Thread - creation - Exception handling
+        Creation.debugging();
     }
 }
