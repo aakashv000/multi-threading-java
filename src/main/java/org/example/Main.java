@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.thread.coordinate.Termination;
+import org.example.thread.coordinate.TerminationByCheck;
 import org.example.thread.create.Creation;
 import org.example.thread.create.CreationByInheritanceConcept;
 import org.example.thread.create.CreationByInheritanceExample;
@@ -23,5 +24,7 @@ public class Main {
 
         // # termination:
         new Termination().exec();
+        // by explicitly checking for interrupt
+        new TerminationByCheck().exec();
     }
 }
