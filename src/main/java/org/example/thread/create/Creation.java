@@ -1,4 +1,4 @@
-package org.example.thread;
+package org.example.thread.create;
 
 /**
  * creation - by creating Thread class object directly

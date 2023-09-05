@@ -1,4 +1,4 @@
-package org.example.thread;
+package org.example.thread.create;
 
 import java.util.ArrayList;
 import java.util.List;

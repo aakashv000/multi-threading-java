@@ -1,4 +1,4 @@
-package org.example.thread;
+package org.example.thread.create;
 
 public class CreationByInheritanceConcept {
     public static void parent() {

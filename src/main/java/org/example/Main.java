@@ -1,8 +1,9 @@
 package org.example;
 
-import org.example.thread.Creation;
-import org.example.thread.CreationByInheritanceConcept;
-import org.example.thread.CreationByInheritanceExample;
+import org.example.thread.coordinate.Termination;
+import org.example.thread.create.Creation;
+import org.example.thread.create.CreationByInheritanceConcept;
+import org.example.thread.create.CreationByInheritanceExample;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
@@ -17,7 +18,10 @@ public class Main {
 
         // by inheritance
         CreationByInheritanceConcept.parent();
-        // by inheritance - example
-        (new CreationByInheritanceExample()).exec();
+        // by inheritance - example (disabled, as consumes time)
+//        (new CreationByInheritanceExample()).exec();
+
+        // # termination:
+        new Termination().exec();
     }
 }
