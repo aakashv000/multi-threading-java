@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.thread.Creation;
 import org.example.thread.CreationByInheritanceConcept;
+import org.example.thread.CreationByInheritanceExample;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
@@ -16,5 +17,7 @@ public class Main {
 
         // by inheritance
         CreationByInheritanceConcept.parent();
+        // by inheritance - example
+        (new CreationByInheritanceExample()).exec();
     }
 }
