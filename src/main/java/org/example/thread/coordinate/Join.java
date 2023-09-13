@@ -22,6 +22,7 @@ public class Join {
 
         // start all threads
         for (Thread thread: threads) {
+            thread.setDaemon(true); // to not let even bypassed time-consuming jobs keep the whole program from ending
             thread.start();
         }
 
