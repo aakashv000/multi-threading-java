@@ -30,8 +30,8 @@ public class Join {
          * fix - use join()
          */
         for (Thread thread: threads) {
-            thread.join();
-//            thread.join(2000);  // use timeout in join() to bypass very time-consuming threads/jobs
+//            thread.join();
+            thread.join(2000);  // use timeout in join() to bypass very time-consuming threads/jobs
         }
 
         // get calculated values from each thread if finished
