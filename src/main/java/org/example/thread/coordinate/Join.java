@@ -11,8 +11,8 @@ public class Join {
     public void exec() throws InterruptedException {
         Format.printSeparator();
 
-        List<Long> inputNums = Arrays.asList(0L, 3434L, 12345L, 1414L, 22L, 123L);
-//        List<Long> inputNums = Arrays.asList(0L, 1000000L, 3434L, 12345L, 1414L, 22L, 123L);    // edge case - 1 very large input
+//        List<Long> inputNums = Arrays.asList(0L, 3434L, 12345L, 1414L, 22L, 123L);
+        List<Long> inputNums = Arrays.asList(0L, 1000000L, 3434L, 12345L, 1414L, 22L, 123L);    // edge case - 1 very large input
 
         // Initialize threads for each input number
         List<FactorialThread> threads = new ArrayList<>();
