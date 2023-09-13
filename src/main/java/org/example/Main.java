@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.thread.coordinate.Join;
 import org.example.thread.coordinate.Termination;
 import org.example.thread.coordinate.TerminationByCheck;
 import org.example.thread.coordinate.TerminationByCheck_Daemon;
@@ -29,5 +30,8 @@ public class Main {
         new TerminationByCheck().exec();
         // daemon
         new TerminationByCheck_Daemon().exec();
+
+        // # join
+        new Join().exec();
     }
 }
