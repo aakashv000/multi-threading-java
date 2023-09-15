@@ -18,15 +18,24 @@ public class Latency {
         BufferedImage originalImage = ImageIO.read(new File(SOURCE_FILE));
         BufferedImage resultImage = new BufferedImage(originalImage.getWidth(), originalImage.getHeight(), BufferedImage.TYPE_INT_RGB);
 
+        // single-threaded run
         long start = System.currentTimeMillis();
-
-//        recolorSingleThreaded(originalImage, resultImage);
-        recolorMultiThreaded(originalImage, resultImage, 2);
-
+        recolorSingleThreaded(originalImage, resultImage);
         long end = System.currentTimeMillis();
         long duration = end - start;
-        System.out.println("duration = " + duration);
+        System.out.println("Single-threaded duration = " + duration + " ms");
 
+        // multi-threaded run
+        start = System.currentTimeMillis();
+
+        int noOfThreads = 6;
+        recolorMultiThreaded(originalImage, resultImage, noOfThreads);
+
+        end = System.currentTimeMillis();
+        duration = end - start;
+        System.out.println("Multi-threaded duration = " + duration + " ms");
+
+        // save image to file
         ImageIO.write(resultImage, "jpg", new File(DEST_FILE));
     }
 
