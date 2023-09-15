@@ -7,9 +7,12 @@ import org.example.thread.coordinate.TerminationByCheck_Daemon;
 import org.example.thread.create.Creation;
 import org.example.thread.create.CreationByInheritanceConcept;
 import org.example.thread.create.CreationByInheritanceExample;
+import org.example.thread.performance.Latency;
+
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
         System.out.println("Hello world!");
 
         // # thread - creation:
@@ -33,5 +36,9 @@ public class Main {
 
         // # join
         new Join().exec();
+
+        // # performance
+        // ## latency
+        new Latency().exec();
     }
 }
