@@ -6,9 +6,11 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Latency {
-    public void exec() throws IOException {
+    public void exec() throws IOException, InterruptedException {
         Format.printSeparator();
         final String SOURCE_FILE = "./src/main/resources/many-flowers.jpg";
         final String DEST_FILE = "./src/main/resources/out/many-flowers_purple.jpg";
@@ -18,7 +20,8 @@ public class Latency {
 
         long start = System.currentTimeMillis();
 
-        recolorSingleThreaded(originalImage, resultImage);
+//        recolorSingleThreaded(originalImage, resultImage);
+        recolorMultiThreaded(originalImage, resultImage, 2);
 
         long end = System.currentTimeMillis();
         long duration = end - start;
@@ -27,9 +30,37 @@ public class Latency {
         ImageIO.write(resultImage, "jpg", new File(DEST_FILE));
     }
 
+
+    private void recolorMultiThreaded (BufferedImage origImg, BufferedImage resImg, int noOfThreads) throws InterruptedException {
+        List<Thread> threads = new ArrayList<>();
+        int leftCorner = 0;
+        int width = origImg.getWidth();
+        int height = origImg.getHeight() / noOfThreads;
+
+        for (int i = 0; i < noOfThreads; i++) {
+            int topCorner = i * height;
+
+            Thread t = new Thread(() -> {
+                recolorImageChunk(origImg, resImg, leftCorner, topCorner, width, height);
+            });
+
+            threads.add(t);
+        }
+
+        for (Thread t: threads) {
+            t.start();
+        }
+
+        for (Thread t: threads) {
+            t.join();
+        }
+    }
+
+
     private void recolorSingleThreaded (BufferedImage origImg, BufferedImage resImg) {
         recolorImageChunk(origImg, resImg, 0, 0, origImg.getWidth(), origImg.getHeight());
     }
+
 
     private void recolorImageChunk (BufferedImage origImg, BufferedImage resImg, int leftCorner, int topCorner, int width, int height) {
         for (int x = leftCorner; x < leftCorner + width; x++) {
