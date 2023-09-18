@@ -12,6 +12,10 @@ import java.nio.file.Path;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+/**
+ * Throughput calculation - used JMeter, plan saved (Throughput - Word Count - Multithreading - Test Plan.jmx)
+ * Throughput load - search_words.csv
+ */
 public class Throughput {
     private static final String INPUT_FILE_PATH = "./src/main/resources/throughput/war_and_peace.txt";
     private static final int NUM_OF_THREADS = 4;
