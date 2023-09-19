@@ -47,16 +47,24 @@ public class CriticalSection {
 
     private static class InventoryCounter {
         private int itemsCount = 0;
+        private Object lock = new Object();
 
-        public synchronized void increment() {
-            // critical section - start
-            itemsCount++;
-            // critical section - end
+//        public synchronized void increment() {
+        public void increment() {
+            synchronized (lock) {
+                // critical section - start
+                itemsCount++;
+                // critical section - end
+            }
         }
-        public synchronized void decrement() {
-            // critical section - start
-            itemsCount--;
-            // critical section - end
+
+//        public synchronized void decrement() {
+        public void decrement() {
+            synchronized (lock) {
+                // critical section - start
+                itemsCount--;
+                // critical section - end
+            }
         }
 
         public int getItemsCount() { return itemsCount; }
