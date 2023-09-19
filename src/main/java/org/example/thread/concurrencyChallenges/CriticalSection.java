@@ -47,11 +47,14 @@ public class CriticalSection {
 
     private static class InventoryCounter {
         private int itemsCount = 0;
-        private Object lock = new Object();
+//        private Object lock = new Object();
+        private Object lock_1 = new Object();
+        private Object lock_2 = new Object();
 
 //        public synchronized void increment() {
         public void increment() {
-            synchronized (lock) {
+//            synchronized (lock) {
+            synchronized (lock_1) {
                 // critical section - start
                 itemsCount++;
                 // critical section - end
@@ -60,7 +63,8 @@ public class CriticalSection {
 
 //        public synchronized void decrement() {
         public void decrement() {
-            synchronized (lock) {
+//            synchronized (lock) {
+            synchronized (lock_2) {
                 // critical section - start
                 itemsCount--;
                 // critical section - end
