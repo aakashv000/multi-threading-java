@@ -18,7 +18,8 @@ public class CriticalSection {
 
         System.out.println("Parallel - InventoryCounter.itemsCount = " + inventoryCounter.getItemsCount());
         // ^ its value is always = 0
-        // because both operations, itemsCount++ and itemsCount--, are in same synchronized monitor/lock
+        // only when, both non-atomic operations, itemsCount++ and itemsCount--
+        // are in SAME synchronized monitor/lock
     }
 
 
