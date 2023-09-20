@@ -19,22 +19,23 @@ public class MetricsCalEg {
 
     private static class BusinessLogic extends Thread {
         private Metrics metrics;
-        private Random random = new Random();
+//        private Random random = new Random();
         BusinessLogic (Metrics metrics) { this.metrics = metrics; }
 
         public void run() {
             while (true) {
-                long start = System.currentTimeMillis();
-
-                try {
-                    Thread.sleep(random.nextInt(10));
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-
-                long end = System.currentTimeMillis();
-
-                metrics.addSample(end - start);
+//                long start = System.currentTimeMillis();
+//
+//                try {
+//                    Thread.sleep(random.nextInt(10));
+//                } catch (InterruptedException e) {
+//                    throw new RuntimeException(e);
+//                }
+//
+//                long end = System.currentTimeMillis();
+//
+//                metrics.addSample(end - start);
+                metrics.addSample(10);
             }
         }
     }
@@ -42,9 +43,11 @@ public class MetricsCalEg {
 
     private static class Metrics {
         private long count = 0;
+//        private volatile double average = 0.0;
         private double average = 0.0;
 
-        public void addSample (long sample) {
+        public synchronized void addSample (long sample) {
+        // ^ due to synchronized - average is always 10
             double oldAverage = average * count;
 
             count++;
