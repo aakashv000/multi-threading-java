@@ -43,11 +43,13 @@ public class MetricsCalEg {
 
     private static class Metrics {
         private long count = 0;
-//        private volatile double average = 0.0;
-        private double average = 0.0;
+        private volatile double average = 0.0;
+//        private double average = 0.0;
 
-        public synchronized void addSample (long sample) {
-        // ^ due to synchronized - average is always 10
+        // vv due to synchronized - average is always 10
+//        public synchronized void addSample (long sample) {
+        // vv w/o it, starts with approx. 9.998 and tends towards 10
+        public void addSample (long sample) {
             double oldAverage = average * count;
 
             count++;
