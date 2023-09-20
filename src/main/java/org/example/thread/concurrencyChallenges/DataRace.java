@@ -24,7 +24,8 @@ public class DataRace {
 
 
     private static class SharedClass {
-        // making a variable volatile, is equivalent to memory fence/barrier
+        // making a variable volatile,
+        // is equivalent to memory fence/barrier, by guaranteeing order of execution
         // and thus, is a solution for our data race here
         private int x;
         private int y;
@@ -32,6 +33,7 @@ public class DataRace {
 //        private volatile int y;
 
         // 2nd solution - make increment() method synchronized
+        // but, this fix has performance penalty, as this method won't be multi-threaded anymore
         private void increment() {
             x++;
             y++;
