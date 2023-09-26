@@ -42,11 +42,19 @@ class Intersection {
     }
 
     void passIntersectionByRoadB() {
-        synchronized (roadB) {
-            System.out.println("Road B is initially locked by " + Thread.currentThread().getName());
+        // fix deadlock -
+        // avoid cicular wait - by enforcing strict order in lock acquisition
+        // i.e. in this case, acquire locks (roadA, roadB) in same order, in both this method and passIntersectionByRoadB()
+        synchronized (roadA) {
+            System.out.println("Road A is initially locked by " + Thread.currentThread().getName());
 
-            synchronized (roadA) {
-                System.out.println("Road A is then locked by " + Thread.currentThread().getName());
+            synchronized (roadB) {
+                System.out.println("Road B is then locked by " + Thread.currentThread().getName());
+//        synchronized (roadB) {
+//            System.out.println("Road B is initially locked by " + Thread.currentThread().getName());
+//
+//            synchronized (roadA) {
+//                System.out.println("Road A is then locked by " + Thread.currentThread().getName());
 
                 System.out.println("Train is passing through intersection via road B - " + Thread.currentThread().getName());
                 try {
