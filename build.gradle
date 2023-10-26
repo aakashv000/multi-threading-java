@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
 }
 
 group = 'org.example'
@@ -13,6 +15,13 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
+
+javafx {
+    version = "12"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+mainClassName = 'org.example.thread.lock.ReentrantLock_UI'
 
 test {
     useJUnitPlatform()
